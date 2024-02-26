@@ -9,9 +9,9 @@ export default function NewItem({ onAddItem }) {
 
   function handleAddItem(event) {
     event.preventDefault();
-    const newItem = { id: 1, name, quantity, category };
+    const newId = Math.floor(Math.random() * 1000000).toString();
+    const newItem = { id: newId, name, quantity, category };
     onAddItem(newItem);
-
     setName("");
     setQuantity(1);
     setCategory("Produce");
