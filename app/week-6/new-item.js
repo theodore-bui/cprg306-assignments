@@ -2,17 +2,15 @@
 
 import { useState } from "react";
 
-export default function NewItem() {
+export default function NewItem({ onAddItem }) {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [category, setCategory] = useState("Produce");
 
-  function handleSubmit(event) {
+  function handleAddItem(event) {
     event.preventDefault();
-    const item = { name, quantity, category };
-
-    console.log(item);
-    alert(`Added item: ${name}, quantity: ${quantity}, category: ${category}`);
+    const newItem = { id: 1, name, quantity, category };
+    onAddItem(newItem);
 
     setName("");
     setQuantity(1);
@@ -21,8 +19,8 @@ export default function NewItem() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 justify-items-center bg-yellow-500 text-black p-1 rounded-lg">
-        <form onSubmit={handleSubmit} className="grid justify-items-center">
+      <div className="flex justify-center justify-items-center bg-yellow-500 text-black p-1 rounded-lg">
+        <form onSubmit={handleAddItem} className="grid justify-items-center">
           <div className="my-2 px-2 grid justify-items-center">
             <label>
               Name:
